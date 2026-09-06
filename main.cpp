@@ -2,6 +2,7 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include "GameOfLife.h"
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
@@ -14,105 +15,75 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
 const int W = 100;
 const int H = 25;
 
-void draw(const std::vector<std::vector<int>>& board){
+void draw(const GameOfLife& game){
     std::cout << "\033[H\033[2J\033[3J";
-    for (const auto& row : board){
-        for (int cell : row){
-            std::cout << (cell != 0 ? '#' : '.');
+    for (int i = 0; i<game.getHeight();i++){
+        for (int j=0; j<game.getWidth();j++){
+            int cell = game.getCell(j,i);
+            std::cout << (cell!=0 ? "#" : ".");
         }
-        std::cout << '\n';
+        std::cout<<"\n";
     }
     std::cout.flush();
 }
 
-std::vector<std::vector<int>> update(const std::vector<std::vector<int>>& board){
-    std::vector<std::vector<int>> next(board);
-    for (int i = 1;i<H-1;i++){
-        for (int j = 1;j<W-1;j++){
-            int neighbours = board[i-1][j] + board[i-1][j+1]
-            + board[i-1][j-1] + board[i][j+1] + board[i][j-1]
-            + board[i+1][j] + board[i+1][j-1] + board[i+1][j+1];
+void InitialConditions(GameOfLife& game){
+    game.setCell(26,2,1);
 
+    game.setCell(24,3,1);
+    game.setCell(26,3,1);
 
-            if (board[i][j]==1){
-                if(neighbours<2){
-                    next[i][j] = 0;
-                } else if(neighbours == 2 || neighbours == 3){
-                    continue;
-                } else if(neighbours >3){
-                    next[i][j] = 0;
-                }
-            } else {
-                if (neighbours==3){
-                    next[i][j] = 1;
-                }
+    game.setCell(14,4,1);
+    game.setCell(15,4,1);
+    game.setCell(22,4,1);
+    game.setCell(23,4,1);
+    game.setCell(36,4,1);
+    game.setCell(37,4,1);
 
-            }
+    game.setCell(13,5,1);
+    game.setCell(17,5,1);
+    game.setCell(22,5,1);
+    game.setCell(23,5,1);
+    game.setCell(36,5,1);
+    game.setCell(37,5,1);
 
-        }
-    }
-    return next;
-}
+    game.setCell(2,6,1);
+    game.setCell(3,6,1);
+    game.setCell(12,6,1);
+    game.setCell(18,6,1);
+    game.setCell(22,6,1);
+    game.setCell(23,6,1);
 
-std::vector<std::vector<int>> initial_conditions(){
-    std::vector<std::vector<int>> board(H, std::vector<int>(W, 0));
-    // Działko Gospera (Gosper glider gun) - co 30 generacji wystrzeliwuje nowego szybowca
-    board[2][26] = 1;
+    game.setCell(2,7,1);
+    game.setCell(3,7,1);
+    game.setCell(12,7,1);
+    game.setCell(16,7,1);
+    game.setCell(18,7,1);
+    game.setCell(19,7,1);
+    game.setCell(24,7,1);
+    game.setCell(26,7,1);
 
-    board[3][24] = 1;
-    board[3][26] = 1;
+    game.setCell(12,8,1);
+    game.setCell(18,8,1);
+    game.setCell(26,8,1);
 
-    board[4][14] = 1;
-    board[4][15] = 1;
-    board[4][22] = 1;
-    board[4][23] = 1;
-    board[4][36] = 1;
-    board[4][37] = 1;
+    game.setCell(13,9,1);
+    game.setCell(17,9,1);
 
-    board[5][13] = 1;
-    board[5][17] = 1;
-    board[5][22] = 1;
-    board[5][23] = 1;
-    board[5][36] = 1;
-    board[5][37] = 1;
-
-    board[6][2] = 1;
-    board[6][3] = 1;
-    board[6][12] = 1;
-    board[6][18] = 1;
-    board[6][22] = 1;
-    board[6][23] = 1;
-
-    board[7][2] = 1;
-    board[7][3] = 1;
-    board[7][12] = 1;
-    board[7][16] = 1;
-    board[7][18] = 1;
-    board[7][19] = 1;
-    board[7][24] = 1;
-    board[7][26] = 1;
-
-    board[8][12] = 1;
-    board[8][18] = 1;
-    board[8][26] = 1;
-
-    board[9][13] = 1;
-    board[9][17] = 1;
-
-    board[10][14] = 1;
-    board[10][15] = 1;
-
-
-    return board;
+    game.setCell(14,10,1);
+    game.setCell(15,10,1);
 }
 int main(){
-    auto game = initial_conditions();
+    GameOfLife game(W,H);
+    InitialConditions(game);
+
     int liczba_generacji = 500;
     for (int i = 0;i<liczba_generacji;i++){
-
+        
         std::this_thread::sleep_for(std::chrono::milliseconds(150));
         draw(game);
-        game = update(game);
+        game.update();
+
     }
 
 
