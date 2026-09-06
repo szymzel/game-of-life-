@@ -2,6 +2,8 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include "raylib.h"
+#include "renderer.h"
 #include "GameOfLife.h"
 
 template <typename T>
@@ -12,9 +14,11 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
     return os;
 }
 
-const int W = 100;
-const int H = 25;
+const int W = 150;
+const int H = 80;
+const int cellSize = 8;
 
+/*
 void draw(const GameOfLife& game){
     std::cout << "\033[H\033[2J\033[3J";
     for (int i = 0; i<game.getHeight();i++){
@@ -26,7 +30,7 @@ void draw(const GameOfLife& game){
     }
     std::cout.flush();
 }
-
+*/
 void InitialConditions(GameOfLife& game){
     game.setCell(26,2,1);
 
@@ -72,19 +76,39 @@ void InitialConditions(GameOfLife& game){
 
     game.setCell(14,10,1);
     game.setCell(15,10,1);
+
+    // R-pentomino, daleko od działka - chaotyczna ewolucja przez setki generacji
+    game.setCell(101,40,1);
+    game.setCell(102,40,1);
+    game.setCell(100,41,1);
+    game.setCell(101,41,1);
+    game.setCell(101,42,1);
 }
 int main(){
+    InitWindow(W*cellSize,H*cellSize, "GameOfLife");
+    SetTargetFPS(60);
     GameOfLife game(W,H);
     InitialConditions(game);
-
+    /*
     int liczba_generacji = 500;
     for (int i = 0;i<liczba_generacji;i++){
         
         std::this_thread::sleep_for(std::chrono::milliseconds(150));
-        draw(game);
+        draw(game, cellSize);
         game.update();
 
     }
+    */
 
+    while (!WindowShouldClose()){
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        draw(game,cellSize);
+        game.update();
+        EndDrawing();
+    }
+
+    CloseWindow();
+    return 0;
 
 }
