@@ -5,6 +5,8 @@
 #include "raylib.h"
 #include "renderer.h"
 #include "GameOfLife.h"
+#include "input.h"
+#include "InitialConditions.h"
 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
@@ -14,9 +16,10 @@ std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
     return os;
 }
 
-const int W = 150;
+const int W = 120;
 const int H = 80;
-const int cellSize = 8;
+const int cellSize = 10;
+bool IsPaused = 0;
 
 /*
 void draw(const GameOfLife& game){
@@ -31,59 +34,7 @@ void draw(const GameOfLife& game){
     std::cout.flush();
 }
 */
-void InitialConditions(GameOfLife& game){
-    game.setCell(26,2,1);
 
-    game.setCell(24,3,1);
-    game.setCell(26,3,1);
-
-    game.setCell(14,4,1);
-    game.setCell(15,4,1);
-    game.setCell(22,4,1);
-    game.setCell(23,4,1);
-    game.setCell(36,4,1);
-    game.setCell(37,4,1);
-
-    game.setCell(13,5,1);
-    game.setCell(17,5,1);
-    game.setCell(22,5,1);
-    game.setCell(23,5,1);
-    game.setCell(36,5,1);
-    game.setCell(37,5,1);
-
-    game.setCell(2,6,1);
-    game.setCell(3,6,1);
-    game.setCell(12,6,1);
-    game.setCell(18,6,1);
-    game.setCell(22,6,1);
-    game.setCell(23,6,1);
-
-    game.setCell(2,7,1);
-    game.setCell(3,7,1);
-    game.setCell(12,7,1);
-    game.setCell(16,7,1);
-    game.setCell(18,7,1);
-    game.setCell(19,7,1);
-    game.setCell(24,7,1);
-    game.setCell(26,7,1);
-
-    game.setCell(12,8,1);
-    game.setCell(18,8,1);
-    game.setCell(26,8,1);
-
-    game.setCell(13,9,1);
-    game.setCell(17,9,1);
-
-    game.setCell(14,10,1);
-    game.setCell(15,10,1);
-
-    // R-pentomino, daleko od działka - chaotyczna ewolucja przez setki generacji
-    game.setCell(101,40,1);
-    game.setCell(102,40,1);
-    game.setCell(100,41,1);
-    game.setCell(101,41,1);
-    game.setCell(101,42,1);
-}
 int main(){
     InitWindow(W*cellSize,H*cellSize, "GameOfLife");
     SetTargetFPS(60);
@@ -101,10 +52,14 @@ int main(){
     */
 
     while (!WindowShouldClose()){
+        handleInput(game, cellSize);
+        Pause(IsPaused);
+        if (IsPaused==0){
+            game.update();
+        }
         BeginDrawing();
         ClearBackground(RAYWHITE);
         draw(game,cellSize);
-        game.update();
         EndDrawing();
     }
 
