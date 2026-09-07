@@ -162,5 +162,5 @@ void Random(GameOfLife& game){
 }
 
 void InitialConditions(GameOfLife& game){
-    Random(game);
+    AllBlackBoard(game);
 }

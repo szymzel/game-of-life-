@@ -1,4 +1,4 @@
-SOURCES = main.cpp GameOfLife.cpp InitialConditions.cpp renderer.cpp input.cpp
+SOURCES = src/main.cpp src/GameOfLife.cpp src/InitialConditions.cpp src/renderer.cpp src/input.cpp
 
 game: $(SOURCES)
 	clang++ -std=c++17 -Wall $(SOURCES) $(shell pkg-config --cflags --libs raylib) -o game
