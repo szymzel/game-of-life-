@@ -1,5 +1,6 @@
 #include "GameOfLife.h"
 #include "InitialConditions.h"
+#include <random>
 
 void BlackBoardWithoutColoredBoundaries(GameOfLife& game){
     for (int i = 1;i<game.getWidth()-1;i++){
@@ -75,6 +76,91 @@ void DefaultScenario(GameOfLife& game){
     game.setCell(101,42,1);
 }
 
+void Acorn(GameOfLife& game){
+    game.setCell(31,100,1);
+
+    game.setCell(33,101,1);
+
+    game.setCell(30,102,1);
+    game.setCell(31,102,1);
+    game.setCell(34,102,1);
+    game.setCell(35,102,1);
+    game.setCell(36,102,1);
+}
+
+void Pulsar(GameOfLife& game){
+    game.setCell(182,100,1);
+    game.setCell(183,100,1);
+    game.setCell(184,100,1);
+    game.setCell(188,100,1);
+    game.setCell(189,100,1);
+    game.setCell(190,100,1);
+
+    game.setCell(180,102,1);
+    game.setCell(185,102,1);
+    game.setCell(187,102,1);
+    game.setCell(192,102,1);
+
+    game.setCell(180,103,1);
+    game.setCell(185,103,1);
+    game.setCell(187,103,1);
+    game.setCell(192,103,1);
+
+    game.setCell(180,104,1);
+    game.setCell(185,104,1);
+    game.setCell(187,104,1);
+    game.setCell(192,104,1);
+
+    game.setCell(182,105,1);
+    game.setCell(183,105,1);
+    game.setCell(184,105,1);
+    game.setCell(188,105,1);
+    game.setCell(189,105,1);
+    game.setCell(190,105,1);
+
+    game.setCell(182,107,1);
+    game.setCell(183,107,1);
+    game.setCell(184,107,1);
+    game.setCell(188,107,1);
+    game.setCell(189,107,1);
+    game.setCell(190,107,1);
+
+    game.setCell(180,108,1);
+    game.setCell(185,108,1);
+    game.setCell(187,108,1);
+    game.setCell(192,108,1);
+
+    game.setCell(180,109,1);
+    game.setCell(185,109,1);
+    game.setCell(187,109,1);
+    game.setCell(192,109,1);
+
+    game.setCell(180,110,1);
+    game.setCell(185,110,1);
+    game.setCell(187,110,1);
+    game.setCell(192,110,1);
+
+    game.setCell(182,112,1);
+    game.setCell(183,112,1);
+    game.setCell(184,112,1);
+    game.setCell(188,112,1);
+    game.setCell(189,112,1);
+    game.setCell(190,112,1);
+}
+
+void Random(GameOfLife& game){
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(0,99);
+    for (int x = 0; x < game.getWidth(); x++){
+        for (int y = 0; y < game.getHeight(); y++){
+            if (dist(gen) < 25){
+                game.setCell(x, y, 1);
+            }
+        }
+    }
+}
+
 void InitialConditions(GameOfLife& game){
-    WhiteBoard(game);
+    Random(game);
 }

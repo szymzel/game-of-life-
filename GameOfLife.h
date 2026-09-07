@@ -12,5 +12,6 @@ class GameOfLife{
     private:
         int width;
         int height;
-        std::vector<std::vector<int>> board;
+        std::vector<int> board;
+        int index(int x, int y) const;
 };

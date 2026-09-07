@@ -9,7 +9,7 @@ void draw(const GameOfLife& game, int cellSize){
             int posx = j*cellSize;
             int posy = i*cellSize;
             if(game.getCell(j,i)==1){
-                DrawRectangle(posx, posy, cellSize, cellSize, BLACK);
+                DrawRectangle(posx, posy, cellSize, cellSize, LIME);
             }
             
         }
