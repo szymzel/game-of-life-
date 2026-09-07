@@ -1,15 +1,15 @@
 #pragma once
-#include "GameOfLife.h"
+#include "board.h"
 #include "renderer.h"
 
-void LittleBoom(GameOfLife& game, int cellSize);
+void LittleBoom(board& grid, int cellSize);
 
-void DrawBlackSquare(GameOfLife&game, int cellSize, int size);
+void DrawBlackSquare(board&grid, int cellSize, int size);
 
-void BigBoom(GameOfLife& game, int cellSize, int range);
+void BigBoom(board& grid, int cellSize, int range);
 
-void ConstSource(GameOfLife& game, int cellSize, int size);
+void ConstSource(board& grid, int cellSize, int size);
 
-void handleInput(GameOfLife& game, int cellSize);
+void handleInput(board& grid, int cellSize);
 
 void Pause(bool& IsPaused);

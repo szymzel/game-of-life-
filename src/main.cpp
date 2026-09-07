@@ -3,7 +3,7 @@
 #include <string>
 #include "raylib.h"
 #include "renderer.h"
-#include "GameOfLife.h"
+#include "board.h"
 #include "input.h"
 #include "InitialConditions.h"
 
@@ -15,14 +15,14 @@ bool IsPaused = 0;
 int main(){
     InitWindow(W*cellSize,H*cellSize, "GameOfLife");
     SetTargetFPS(60);
-    GameOfLife game(W,H);
-    InitialConditions(game);
+    board grid(W,H);
+    InitialConditions(grid);
     int GenerationNumber = 0;
     while (!WindowShouldClose()){
-        handleInput(game, cellSize);
+        handleInput(grid, cellSize);
         Pause(IsPaused);
         if (IsPaused==0){
-            game.update();
+            //grid.update();
             GenerationNumber += 1;
         }
 
@@ -30,7 +30,7 @@ int main(){
 
         BeginDrawing();
         ClearBackground(BLACK);
-        draw(game,cellSize);
+        draw(grid,cellSize);
         DrawText(text.c_str(),0,0,16,LIME);
         EndDrawing();
     }

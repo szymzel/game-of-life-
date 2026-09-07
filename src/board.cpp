@@ -1,15 +1,15 @@
-#include "GameOfLife.h"
+#include "board.h"
 #include <vector>
 
-GameOfLife::GameOfLife(int width, int height) : 
+board::board(int width, int height) : 
 width(width), height(height), 
-board(height*width,0) {
+grid(height*width,0) {
 };
 
-int GameOfLife::index(int x, int y) const{
+int board::index(int x, int y) const{
     return y*width + x;
 }
-
+/*
 void GameOfLife::update(){
     std::vector<int> next(board);
     for (int i = 1;i<width-1;i++){
@@ -36,23 +36,24 @@ void GameOfLife::update(){
     }
     board = next;
 }
+*/
 
-void GameOfLife::setCell(int x, int y, int value){
+void board::setCell(int x, int y, int value){
     if (x<0 || x>=width || y<0 || y>=height){
         return;
     }
-    board[this->index(x,y)] = value;
+    grid[this->index(x,y)] = value;
 }
 
-int GameOfLife::getWidth() const{
+int board::getWidth() const{
     return width;
 }
 
-int GameOfLife::getHeight() const{
+int board::getHeight() const{
     return height;
 }
 
-int GameOfLife::getCell(int x, int y) const{
-    return board[this->index(x,y)];
+int board::getCell(int x, int y) const{
+    return grid[this->index(x,y)];
 }
 

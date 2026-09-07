@@ -1,5 +1,5 @@
 #pragma once
-#include "GameOfLife.h"
+#include "board.h"
 
 
-void draw(const GameOfLife& game, int cellSize);
+void draw(const board& grid, int cellSize);

@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 
-class GameOfLife{
+class board{
     public:
-        GameOfLife(int width, int height);
-        void update();
+        board(int width, int height);
+        //void update();
         void setCell(int x ,int y, int value);
         int getWidth() const;
         int getHeight() const;
@@ -12,6 +12,6 @@ class GameOfLife{
     private:
         int width;
         int height;
-        std::vector<int> board;
+        std::vector<int> grid;
         int index(int x, int y) const;
 };

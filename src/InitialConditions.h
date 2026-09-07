@@ -1,17 +1,17 @@
-#include "GameOfLife.h"
+#include "board.h"
 
-void BlackBoardWithoutColoredBoundaries(GameOfLife& game);
+void BlackBoardWithoutColoredBoundaries(board& grid);
 
-void AllBlackBoard(GameOfLife& game);
+void AllBlackBoard(board& grid);
 
-void WhiteBoard(GameOfLife& game);
+void WhiteBoard(board& grid);
 
-void DefaultScenario(GameOfLife& game);
+void DefaultScenario(board& grid);
 
-void Acorn(GameOfLife& game);
+void Acorn(board& grid);
 
-void Pulsar(GameOfLife& game);
+void Pulsar(board& grid);
 
-void Random(GameOfLife& game);
+void Random(board& grid);
 
-void InitialConditions(GameOfLife& game);
+void InitialConditions(board& grid);

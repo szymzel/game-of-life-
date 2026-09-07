@@ -1,14 +1,14 @@
 #include "raylib.h"
-#include "GameOfLife.h"
+#include "board.h"
 #include "renderer.h"
 
 
-void draw(const GameOfLife& game, int cellSize){
-    for (int i = 0;i < game.getHeight();i++){
-        for (int j = 0;j < game.getWidth();j++){
+void draw(const board& grid, int cellSize){
+    for (int i = 0;i < grid.getHeight();i++){
+        for (int j = 0;j < grid.getWidth();j++){
             int posx = j*cellSize;
             int posy = i*cellSize;
-            if(game.getCell(j,i)==1){
+            if(grid.getCell(j,i)==1){
                 DrawRectangle(posx, posy, cellSize, cellSize, LIME);
             }
             
