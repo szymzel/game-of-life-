@@ -14,4 +14,4 @@ void Pulsar(board& grid);
 
 void Random(board& grid);
 
-void InitialConditions(board& grid);
+void initial_conditions(board& grid);

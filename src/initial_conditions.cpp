@@ -1,5 +1,5 @@
 #include "board.h"
-#include "InitialConditions.h"
+#include "initial_conditions.h"
 #include <random>
 
 void BlackBoardWithoutColoredBoundaries(board& grid){
@@ -161,6 +161,6 @@ void Random(board& grid){
     }
 }
 
-void InitialConditions(board& grid){
+void initial_conditions(board& grid){
     AllBlackBoard(grid);
 }

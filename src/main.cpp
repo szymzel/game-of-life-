@@ -5,7 +5,7 @@
 #include "renderer.h"
 #include "board.h"
 #include "input.h"
-#include "InitialConditions.h"
+#include "initial_conditions.h"
 
 const int W = 240*5;
 const int H = 160*5;
@@ -16,7 +16,7 @@ int main(){
     InitWindow(W*cellSize,H*cellSize, "GameOfLife");
     SetTargetFPS(60);
     board grid(W,H);
-    InitialConditions(grid);
+    initial_conditions(grid);
     int GenerationNumber = 0;
     while (!WindowShouldClose()){
         handleInput(grid, cellSize);
