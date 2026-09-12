@@ -1,6 +1,6 @@
 #pragma once
-#include "cellular_automaton.h"
-#include "board.h"
+#include "../cellular_automaton.h"
+#include "../board.h"
 #include <string>
 
 class game_of_life : public cellular_automaton{

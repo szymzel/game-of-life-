@@ -1,4 +1,4 @@
-SOURCES = src/main.cpp src/GameOfLife.cpp src/initial_conditions.cpp src/renderer.cpp src/input.cpp
+SOURCES = src/main.cpp src/automata/game_of_life.cpp src/initial_conditions.cpp src/renderer.cpp src/input.cpp src/cellular_automaton.cpp src/board.cpp src/automata/seeds.cpp
 
 game: $(SOURCES)
 	clang++ -std=c++17 -Wall $(SOURCES) $(shell pkg-config --cflags --libs raylib) -o game

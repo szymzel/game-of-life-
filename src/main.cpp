@@ -6,14 +6,23 @@
 #include "board.h"
 #include "input.h"
 #include "initial_conditions.h"
+#include "automata/game_of_life.h"
+#include "automata/seeds.h"
 
-const int W = 240*5;
-const int H = 160*5;
-const int cellSize = 1;
+const int W = 200;
+const int H = 130;
+const int cellSize = 6;
+
 bool IsPaused = 0;
 
 int main(){
-    InitWindow(W*cellSize,H*cellSize, "GameOfLife");
+
+    std::unique_ptr<cellular_automaton> automaton = std::make_unique<game_of_life>("Conway");
+
+
+
+    std::string name = automaton->getName();
+    InitWindow(W*cellSize,H*cellSize, name.c_str());
     SetTargetFPS(60);
     board grid(W,H);
     initial_conditions(grid);
@@ -22,7 +31,7 @@ int main(){
         handleInput(grid, cellSize);
         Pause(IsPaused);
         if (IsPaused==0){
-            //grid.update();
+            automaton->update(grid);
             GenerationNumber += 1;
         }
 
