@@ -1,4 +1,4 @@
-# Game of Life
+# Cellular Automata
 
 C++17 cellular automaton simulator rendered with raylib. Implements Conway's Game of Life (B3/S23) and Seeds (B2/S) behind a common `cellular_automaton` interface.
 
