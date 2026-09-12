@@ -8,6 +8,7 @@
 #include "initial_conditions.h"
 #include "automata/game_of_life.h"
 #include "automata/seeds.h"
+#include "automata/high_life.h"
 
 const int W = 200;
 const int H = 130;
@@ -17,7 +18,7 @@ bool IsPaused = 0;
 
 int main(){
 
-    std::unique_ptr<cellular_automaton> automaton = std::make_unique<game_of_life>("Conway");
+    std::unique_ptr<cellular_automaton> automaton = std::make_unique<high_life>("High Life");
 
 
 
@@ -25,7 +26,7 @@ int main(){
     InitWindow(W*cellSize,H*cellSize, name.c_str());
     SetTargetFPS(60);
     board grid(W,H);
-    initial_conditions(grid);
+    Random(grid);
     int GenerationNumber = 0;
     while (!WindowShouldClose()){
         handleInput(grid, cellSize);

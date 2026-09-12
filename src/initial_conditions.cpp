@@ -2,15 +2,8 @@
 #include "initial_conditions.h"
 #include <random>
 
-void BlackBoardWithoutColoredBoundaries(board& grid){
-    for (int i = 1;i<grid.getWidth()-1;i++){
-        for (int j = 1;j<grid.getHeight()-1;j++){
-            grid.setCell(i,j,1);
-        }
-    }
-}
 
-void AllBlackBoard(board& grid){
+void AllColoredBoard(board& grid){
     for (int i = 0;i<grid.getWidth();i++){
         for (int j = 0;j<grid.getHeight();j++){
             grid.setCell(i,j,1);
@@ -18,9 +11,6 @@ void AllBlackBoard(board& grid){
     }
 }
 
-void WhiteBoard(board& grid){
-
-}
 
 void DefaultScenario(board& grid){
     grid.setCell(26,2,1);
@@ -148,6 +138,53 @@ void Pulsar(board& grid){
     grid.setCell(190,112,1);
 }
 
+void GliderGun(board& grid){
+    grid.setCell(34,10,1);
+
+    grid.setCell(32,11,1);
+    grid.setCell(34,11,1);
+
+    grid.setCell(22,12,1);
+    grid.setCell(23,12,1);
+    grid.setCell(30,12,1);
+    grid.setCell(31,12,1);
+    grid.setCell(44,12,1);
+    grid.setCell(45,12,1);
+
+    grid.setCell(21,13,1);
+    grid.setCell(25,13,1);
+    grid.setCell(30,13,1);
+    grid.setCell(31,13,1);
+    grid.setCell(44,13,1);
+    grid.setCell(45,13,1);
+
+    grid.setCell(10,14,1);
+    grid.setCell(11,14,1);
+    grid.setCell(20,14,1);
+    grid.setCell(26,14,1);
+    grid.setCell(30,14,1);
+    grid.setCell(31,14,1);
+
+    grid.setCell(10,15,1);
+    grid.setCell(11,15,1);
+    grid.setCell(20,15,1);
+    grid.setCell(24,15,1);
+    grid.setCell(26,15,1);
+    grid.setCell(27,15,1);
+    grid.setCell(32,15,1);
+    grid.setCell(34,15,1);
+
+    grid.setCell(20,16,1);
+    grid.setCell(26,16,1);
+    grid.setCell(34,16,1);
+
+    grid.setCell(21,17,1);
+    grid.setCell(25,17,1);
+
+    grid.setCell(22,18,1);
+    grid.setCell(23,18,1);
+}
+
 void Random(board& grid){
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -159,8 +196,4 @@ void Random(board& grid){
             }
         }
     }
-}
-
-void initial_conditions(board& grid){
-    AllBlackBoard(grid);
 }
